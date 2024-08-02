@@ -80,6 +80,7 @@ const App = () => {
   const startRecording = () => {
     setTranscription("");
     setErrorMessage("");
+    setMessage("");
     mediaRecorderRef.current.start();
     recognition.start();
     setRecording(true);
@@ -191,9 +192,11 @@ const App = () => {
       <p>Transcription : {transcription}</p>
       <div className="response">
         {answerMode === "text" ? (
-          <div className="typewriter">
-            <h1>{message.message}</h1>
-          </div>
+          message && (
+            <div className="typewriter">
+              <h1>{message.message}</h1>
+            </div>
+          )
         ) : (
           <>
             {answerMode === "audio" && (
@@ -220,7 +223,7 @@ const App = () => {
             )}
           </>
         )}
-        {loading && <p>loading</p>}
+        {loading && <p>Please wait</p>}
         {errorMessage && <p>Error : {errorMessage}</p>}
       </div>
     </div>
