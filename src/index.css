@@ -1,5 +1,254 @@
+@font-face {
+  font-family: "poppins";
+  src: url(./assets/fonts/Poppins-Regular.ttf);
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  color: #fff;
+  font-family: "poppins";
+  outline: none;
+}
+body {
+  background-color: #000;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.app-con {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  padding: 1rem;
+}
+
+.content {
+  padding: 0.5rem;
+  width: 26rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.response-mode {
+  gap: 0.8rem;
+}
+
+.switchCon {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: fit-content;
+  border: 0.1rem solid #6308ff;
+  border-radius: 1.2rem;
+  background-color: #6308ff;
+  font-weight: bold;
+  color: #6308ff;
+  cursor: pointer;
+}
+
+.switchCon div {
+  font-size: 0.9rem;
+}
+.switchCon::before {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0%;
+  border-radius: 1.2rem;
+  background: white;
+  transition: all 0.3s;
+}
+.toggle-response-mode:checked + .switchCon::before {
+  left: 50%;
+}
+.switchCon div {
+  padding: 0.5rem;
+  text-align: center;
+  z-index: 1;
+}
+.toggle-response-mode {
+  display: none;
+}
+.toggle-response-mode:checked + .switchCon div:first-child {
+  color: white;
+  transition: color 0.3s;
+}
+.toggle-response-mode:checked + .switchCon div:last-child {
+  color: #6308ff;
+  transition: color 0.3s;
+}
+.toggle-response-mode + .switchCon div:first-child {
+  color: #6308ff;
+  transition: color 0.3s;
+}
+.toggle-response-mode + .switchCon div:last-child {
+  color: white;
+  transition: color 0.3s;
+}
+
+.recorder {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.recorder-btn {
+  border-radius: 50%;
+  padding: 0.5rem;
+  background-color: #6308ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.recorder-btn svg {
+  width: 1.8rem;
+  height: 1.6rem;
+}
+
+.recorder .is-recording {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #ff0000;
+  animation: blink-animation 1s infinite;
+}
+
+@keyframes blink-animation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+#bars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.bar {
+  background: #6308ff;
+  bottom: 1px;
+  height: 3px;
+  width: 10px;
+  margin: 0px 4px;
+  border-radius: 5px;
+  animation: sound 0ms -600ms infinite alternate-reverse;
+}
+
+@keyframes sound {
+  0% {
+    opacity: 0.35;
+    height: 3px;
+  }
+  100% {
+    opacity: 1;
+    height: 70px;
+  }
+}
+
+.bar:nth-child(1) {
+  background: #fff;
+  left: 1px;
+  animation-duration: 474ms;
+}
+.bar:nth-child(2) {
+  left: 15px;
+  animation-duration: 433ms;
+}
+.bar:nth-child(3) {
+  left: 29px;
+  animation-duration: 407ms;
+}
+.bar:nth-child(4) {
+  background: #fff;
+  left: 43px;
+  animation-duration: 458ms;
+}
+.bar:nth-child(5) {
+  left: 57px;
+  animation-duration: 400ms;
+}
+.bar:nth-child(6) {
+  left: 71px;
+  animation-duration: 427ms;
+}
+.bar:nth-child(7) {
+  left: 85px;
+  animation-duration: 441ms;
+  background: #fff;
+}
+.bar:nth-child(8) {
+  left: 99px;
+  animation-duration: 419ms;
+}
+.bar:nth-child(9) {
+  background: #fff;
+  left: 113px;
+  animation-duration: 487ms;
+}
+.bar:nth-child(10) {
+  left: 127px;
+  animation-duration: 442ms;
+}
+
+.response {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.typewriter h1 {
+  color: #fff;
+  font-family: monospace;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: 0.15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
 }
