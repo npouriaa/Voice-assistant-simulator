@@ -21,6 +21,7 @@ const App = () => {
 
   const getMessage = async () => {
     setLoading(true);
+    // Note : I replaced the API url with my own url which I generate from mocky.io because the given API Url is broken now and it seems it has beem deleted , but my API response is exactly the same as given API response
     const apiUrl =
       "https://run.mocky.io/v3/60bfe6fd-954e-4050-b3d1-2e4cdc651ebe";
     await fetch(apiUrl)
@@ -164,10 +165,11 @@ const App = () => {
       <div
         className={`response ${responseMode === "audio" && "audio-response"}`}
       >
-        {
-          !audioURL && !message && !loading?
-          <h3 className="assistant-default-text">How can I assist you ?</h3> : ""
-        }
+        {!audioURL && !message && !loading ? (
+          <h3 className="assistant-default-text">How can I assist you ?</h3>
+        ) : (
+          ""
+        )}
         {errorMessage ? (
           <h3 className="error-message">{errorMessage}</h3>
         ) : (
