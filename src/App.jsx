@@ -22,7 +22,7 @@ const App = () => {
   const getMessage = async () => {
     setLoading(true);
     const apiUrl =
-      "https://run.mocky.io/v3/0e943298-786d-462b-ac7b-74b6127212e6";
+      "https://run.mocky.io/v3/60bfe6fd-954e-4050-b3d1-2e4cdc651ebe";
     await fetch(apiUrl)
       .then((response) => response.text())
       .then((text) => eval(`(${text})`))
