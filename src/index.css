@@ -10,6 +10,8 @@
   color: #fff;
   font-family: "poppins";
   outline: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 body {
   background-color: #000;
@@ -25,86 +27,82 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
   height: 100vh;
-  padding: 1rem;
+  padding: 3rem 0;
 }
 
-.content {
-  padding: 0.5rem;
-  width: 26rem;
+.header {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-.row {
-  display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .response-mode {
-  gap: 0.8rem;
+  display: flex;
+  align-items: center;
 }
 
-.switchCon {
-  position: relative;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  width: fit-content;
-  border: 0.1rem solid #6308ff;
-  border-radius: 1.2rem;
-  background-color: #6308ff;
-  font-weight: bold;
-  color: #6308ff;
+.switch-response-mode {
+  padding: 0.5rem;
+  overflow: hidden;
   cursor: pointer;
 }
 
-.switchCon div {
-  font-size: 0.9rem;
-}
-.switchCon::before {
-  content: "";
-  position: absolute;
-  width: 50%;
-  height: 100%;
-  left: 0%;
-  border-radius: 1.2rem;
-  background: white;
-  transition: all 0.3s;
-}
-.toggle-response-mode:checked + .switchCon::before {
-  left: 50%;
-}
-.switchCon div {
-  padding: 0.5rem;
-  text-align: center;
-  z-index: 1;
-}
-.toggle-response-mode {
+.switch-response-mode input {
   display: none;
 }
-.toggle-response-mode:checked + .switchCon div:first-child {
-  color: white;
-  transition: color 0.3s;
+
+.switch-response-mode label {
+  float: left;
 }
-.toggle-response-mode:checked + .switchCon div:last-child {
-  color: #6308ff;
-  transition: color 0.3s;
+
+.switch-response-mode label {
+  min-width: 1.25rem;
+  background-color: #fff;
+  color: #000;
+  font-size: 0.87rem;
+  padding: 0.5rem 1.1rem;
+  transition: all 0.2s;
+  cursor: pointer;
 }
-.toggle-response-mode + .switchCon div:first-child {
-  color: #6308ff;
-  transition: color 0.3s;
+
+.switch-response-mode input:checked + label {
+  background-color: #6308ff;
+  color: #fff;
 }
-.toggle-response-mode + .switchCon div:last-child {
-  color: white;
-  transition: color 0.3s;
+
+.switch-response-mode label:first-of-type {
+  border-radius: 2.5rem 0 0 2.5rem;
+}
+
+.switch-response-mode label:last-of-type {
+  border-radius: 0 2.5rem 2.5rem 0;
 }
 
 .recorder {
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 0.4rem;
+  width: 10rem;
+  justify-content: center;
+  transition: all 0.3s;
+  padding: 0.4rem;
+  background-color: #fff;
+  border-radius: 4rem;
+  width: 3.5rem;
+}
+
+.recorder p {
+  color: #000;
+}
+
+.is-recording {
+  width: 10rem;
 }
 
 .recorder-btn {
@@ -121,7 +119,7 @@ button {
   height: 1.6rem;
 }
 
-.recorder .is-recording {
+.recorder .blink-on-recording {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
@@ -141,7 +139,16 @@ button {
   }
 }
 
-#bars {
+.response {
+  padding: 1rem;
+  height: 100%;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#visualizer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -214,41 +221,73 @@ button {
   animation-duration: 442ms;
 }
 
-.response {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.isTyping {
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  display: inline-block;
+  border-radius: 50%;
+  box-sizing: border-box;
+  animation: animloader 1s ease-in infinite;
 }
 
-.typewriter h1 {
-  color: #fff;
-  font-family: monospace;
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: 0.15em solid orange; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: 0.15em; /* Adjust as needed */
-  animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
-}
-
-/* The typing effect */
-@keyframes typing {
-  from {
-    width: 0;
+@keyframes animloader {
+  0% {
+    transform: scale(0);
+    opacity: 1;
   }
-  to {
-    width: 100%;
+  100% {
+    transform: scale(1);
+    opacity: 0;
   }
 }
 
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
+.assistant-response {
+  color: #6308ff;
+}
+
+.isTyping-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.isTyping-con .isTyping {
+  margin: 0;
+}
+
+.isTyping {
+  margin-left: 1.5rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: -1rem 0 #fff, 1rem 0 #fff;
+  animation: shadowPulse 2s linear infinite alternate;
+}
+
+@keyframes shadowPulse {
+  33% {
+    background: #fff;
+    box-shadow: -1rem 0 #6308ff, 1rem 0 #fff;
   }
-  50% {
-    border-color: orange;
+  66% {
+    background: #6308ff;
+    box-shadow: -1rem 0 #fff, 1rem 0 #fff;
   }
+  100% {
+    background: #fff;
+    box-shadow: -1rem 0 #fff, 1rem 0 #6308ff;
+  }
+}
+
+.error-message {
+  color: red;
+  width: 100%;
+  text-align: center;
+}
+
+.assistant-default-text {
+  width: 100%;
+  text-align: center;
 }
