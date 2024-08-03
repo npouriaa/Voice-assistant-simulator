@@ -13,9 +13,9 @@ const App = () => {
   const audioChunksRef = useRef([]);
   const audioRef = useRef();
 
-  var SpeechRecognition =
+  const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
-  var recognition = new SpeechRecognition();
+  const recognition = new SpeechRecognition();
 
   const msg = new SpeechSynthesisUtterance();
 
@@ -165,7 +165,7 @@ const App = () => {
         className={`response ${responseMode === "audio" && "audio-response"}`}
       >
         {
-          !audioURL && !message ?
+          !audioURL && !message && !loading?
           <h3 className="assistant-default-text">How can I assist you ?</h3> : ""
         }
         {errorMessage ? (
